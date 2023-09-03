@@ -1,10 +1,14 @@
 import React from "react";
 import { Text, View } from "react-native";
+//import QRCodeScanner from 'react-native-qrcode-scanner';
+//import { RNCamera } from 'react-native-camera';
+
 
 export const ScannerScreen = () => {
-  return (
-    <View>
-      <Text>"Scanner Screen"</Text>
-    </View>
-  )
+  /* return (
+    /* <QRCodeScanner
+       onRead={({ data }) => alert(data)}
+       flashMode={RNCamera.Constants.FlashMode.torch} >
+     </QRCodeScanner>
+   )*/
 }
