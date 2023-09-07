@@ -23,6 +23,8 @@ export const ObjectDetailScreen = ({ route }) => {
 
       <View>
         <Text>Descripcion</Text>
+        <Text>dueño</Text>
+        <Text>Contacto</Text>
       </View>
 
     </ScrollView>

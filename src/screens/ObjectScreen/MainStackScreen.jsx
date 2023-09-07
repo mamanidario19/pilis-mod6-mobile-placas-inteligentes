@@ -41,10 +41,10 @@ export const MainStackScreen = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
 
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Object" component={ObjectScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Scanner" component={ScannerScreen} />
+      <Tab.Screen name="Home" options={{ title: "Inicio" }} component={HomeScreen} />
+      <Tab.Screen name="Object" options={{ title: "Mascotas" }} component={ObjectScreen} />
+      <Tab.Screen name="Profile" options={{ title: "Mi Perfil" }} component={ProfileScreen} />
+      <Tab.Screen name="Scanner" options={{ title: "Scanner" }} component={ScannerScreen} />
 
     </Tab.Navigator>
   )
