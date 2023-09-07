@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, SafeAreaView, FlatList, Pressable, Image } from "react-native";
 import { styles } from "./ObjectScreen.styles.js"
 
 import { data } from "../../api/data.js"
 
+import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
+import { object } from "prop-types";
+
 
 
 export const ObjectScreen = ({ navigation }) => {
+
+  /* Search */
+  const [searchQuery, setSearchQuery] = useState("")
+  const handlerSearch = (query) => {
+    setSearchQuery(query)
+  }
+
+  const filteredObjects = data.filter(object => (
+    object.title.toLowerCase().includes(searchQuery.toLowerCase())
+  ))
 
   /* Cards */
   const renderData = ({ item }) => (
@@ -23,8 +36,11 @@ export const ObjectScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
 
       <Text style={styles.itemTitle}>Object Screen </Text>
+
+      <SearchBar handlerSearch={handlerSearch} searchQuery={searchQuery} />
+
       <FlatList
-        data={data}
+        data={filteredObjects}
         renderItem={renderData}
         keyExtractor={item => item.id}
         style={styles.itemList}
