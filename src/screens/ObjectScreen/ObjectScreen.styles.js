@@ -1,67 +1,42 @@
-import { StyleSheet, StatusBar, Dimensions } from 'react-native'
+import { Dimensions, StyleSheet, StatusBar } from 'react-native'
 import { COLORS } from '../../utils/theme'
 
 export const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     flex: 1,
-    padding: 32,
-    backgroundColor: '#fff',
-    marginTop: StatusBar.currentHeight
+    marginTop: StatusBar.currentHeight,
+    backgroundColor: COLORS.grey
   },
-  title: {
-    fontSize: 24,
+  itemContainer: {
+    flex: 1,
+    width: Dimensions.get('screen').width - 20,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginBottom: 10,
+    backgroundColor: COLORS.white,
+    //shadow 
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2
+  },
+  itemList: {
+    padding: 10
+  },
+  itemImage: {
+    height: 200,
+    width: '100%',
+    resizeMode: 'cover'
+  },
+  itemTitle: {
     fontWeight: 'bold',
-    marginBottom: 16,
-    textAlign: 'center'
+    marginTop: 10,
+    marginHorizontal: 10
   },
-  inputContainer: {
-    marginBottom: 12
-  },
-  input: {
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 16,
-    paddingHorizontal: 12,
-    marginBottom: 5,
-    padding: 8
-  },
-  errorText: {
-    color: 'red',
-    fontSize: 12
-  },
-  errorContainer: {
-    flexDirection: 'row',
-    gap: 6,
-    alignItems: 'center'
-  },
-  button: {
-    backgroundColor: COLORS.primary,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 16,
-    marginTop: 8,
-    alignItems: 'center'
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold'
-  },
-  passwordToggleText: {
-    color: 'blue'
-  },
-  tittleRegister: {
-    flexDirection: 'row',
-    marginTop: 20,
-    justifyContent: 'center'
-  },
-  switchLink: {
-    color: COLORS.primary
-  },
-  toggleIcon: {
-    position: 'absolute',
-    top: 10,
-    right: 15
+  itemPrice: {
+    marginTop: 5,
+    marginBottom: 10,
+    marginHorizontal: 10
   }
 })

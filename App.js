@@ -4,9 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from './src/screens/HomeScreen/HomeScreen';
 import { ProfileScreen } from './src/screens/ProfileScreen/ProfileScreen';
-import { ObjectScreen } from './src/screens/ObjectScreen/ObjectScreen';
+import { ObjectStackScreen } from './src/screens/ObjectScreen/ObjectStackScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { COLORS } from './src/utils/theme';
+import { COLORS, SPACING } from './src/utils/theme';
 import { ScannerScreen } from './src/screens/ScannerScreen/ScannerScreen';
 
 const Tab = createBottomTabNavigator();
@@ -24,8 +24,9 @@ const screenOptions = ({ route }) => {
       <FontAwesome5 name={iconName} size={size} color={color}></FontAwesome5>
     ),
     tabBarActiveTintColor: COLORS.primary,
-    tabBarInactiveTintColor: COLORS.grey,
-    headerShown: false
+    tabBarInactiveTintColor: COLORS.inactive,
+    headerShown: false,
+    tabBarStyle: styles.tabBar
   }
 }
 
@@ -36,7 +37,7 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator screenOptions={screenOptions}>
           <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Object" component={ObjectScreen} />
+          <Tab.Screen name="Object" component={ObjectStackScreen} />
           <Tab.Screen name="Profile" component={ProfileScreen} />
           <Tab.Screen name="Scanner" component={ScannerScreen} />
         </Tab.Navigator>
@@ -47,10 +48,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  tabBar: {
+    height: SPACING.xxxl,
+    paddingBottom: SPACING.xs,
+    paddingTop: SPACING.xs
   },
 });
