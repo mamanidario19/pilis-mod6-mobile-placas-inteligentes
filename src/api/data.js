@@ -1,32 +1,28 @@
 export const data = [
   {
     id: '1',
-    title: 'Casa A',
-    location: 'Malibú, California',
-    rating: '4.9',
-    description: 'Escapa a esta hermosa casa de playa ubicada en las costas de Malibú.',
-    price: '$1000/noche'
+    nombre: "Firulais",
+    sexo: "Macho",
+    edad: "7",
+    observaciones: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam."
   }, {
     id: '2',
-    title: 'Casa B',
-    location: 'Malibú, California',
-    rating: '4.9',
-    description: 'Escapa a esta hermosa casa de playa ubicada en las costas de Malibú.',
-    price: '$1000/noche'
+    nombre: "Canela",
+    sexo: "Hembra",
+    edad: "3",
+    observaciones: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam."
   }, {
     id: '3',
-    title: 'Casa C',
-    location: 'Malibú, California',
-    rating: '4.9',
-    description: 'Escapa a esta hermosa casa de playa ubicada en las costas de Malibú.',
-    price: '$1000/noche'
+    nombre: "Monchi",
+    sexo: "Macho",
+    edad: "1",
+    observaciones: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam."
   }
   , {
     id: '4',
-    title: 'Casa D',
-    location: 'Malibú, California',
-    rating: '4.9',
-    description: 'Escapa a esta hermosa casa de playa ubicada en las costas de Malibú.',
-    price: '$1000/noche'
+    nombre: "Perla",
+    sexo: "Hembra",
+    edad: "5",
+    observaciones: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam."
   }
 ]
