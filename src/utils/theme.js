@@ -9,7 +9,8 @@ export const COLORS = {
   'light-gray': '#86858c',
   'grashy-grey': '#E8E2E2',
   black: '#030303',
-  white: '#fff'
+  white: '#fff',
+  orange: '#ed7363'
 }
 
 export const SPACING = {
