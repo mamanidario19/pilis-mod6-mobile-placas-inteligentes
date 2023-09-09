@@ -1,19 +1,14 @@
-import React, { useContext } from "react";
-import { View, Text, ScrollView, Image } from "react-native"
-import { styles } from "./ObjectDetailScreen.styles"
+import React, { useContext, useEffect, useState } from "react";
+import { View, Text, ScrollView, Image } from "react-native";
+import { styles } from "./ObjectDetailScreen.styles";
 import { UserContext } from "../../Contexts/UserContext";
+import QRCode from "react-native-qrcode-svg"; // Importa la biblioteca
 
 export const ObjectDetailScreen = ({ route }) => {
+  const { item } = route.params;
 
-  const { item } = route.params
-
-  /* Requerimos sesion para ver futuro botones. */
-  //const { currentUser } = useContext(UserContext)
-
-  /*Agregar carrousel de fotos 1er view*/
   return (
     <ScrollView style={styles.container}>
-
       <View style={styles.imageContainer}>
         <ScrollView horizontal pagingEnabled style={styles.imageContainer}>
           {item.images.map((image, idx) => (
@@ -21,7 +16,7 @@ export const ObjectDetailScreen = ({ route }) => {
               key={idx}
               source={{ uri: `https://drive.google.com/uc?id=${image}` }}
               style={styles.image}
-              resizeMode='cover'
+              resizeMode="cover"
             />
           ))}
         </ScrollView>
@@ -33,6 +28,17 @@ export const ObjectDetailScreen = ({ route }) => {
         <Text style={styles.title}>{item.edad}</Text>
         <View>
           <Text style={styles.title}>QR</Text>
+          {/* Utiliza react-native-qrcode-svg para mostrar el código QR */}
+          {/* Cambiar por get ID*/}
+          <QRCode
+            value={JSON.stringify({
+              name: item.nombre,
+              gender: item.sexo,
+              age: item.edad,
+              id: item.id,
+            })}
+            size={250} // Ajusta el tamaño según tus preferencias
+          />
         </View>
       </View>
 
@@ -41,9 +47,6 @@ export const ObjectDetailScreen = ({ route }) => {
         <Text>Contacto</Text>
         <Text>dueño</Text>
       </View>
-
     </ScrollView>
-
-  )
-
-}
+  );
+};
