@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { styles } from './LoginScreen.styles'
 import { useForm, Controller } from 'react-hook-form'
-import { getUsers } from '../../api/user.service'
+import { authUser, getUsers } from '../../api/user.service'
 import { UserContext } from '../../Contexts/UserContext'
 import { useNavigation } from '@react-navigation/native'
 
@@ -11,21 +11,39 @@ export const LoginScreen = () => {
   const { setCurrentUser } = useContext(UserContext)
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      username: '',
+      mail: '',
       password: ''
     }
   })
 
-  const handleLogin = ({ username, password }) => {
+  const handleLogin = async (data) => {
+    //console.log(data);
+    try {
+      const response = await authUser(data)
+      if (response.ok) {
+        const json = await response.json()
+        if (json.token && json.refreshToken) {
+          setCurrentUser(
+            { mail: json.mail },
+            { id: json.idUsuario }
+          );
+        }
+        console.log("sesion iniciada");
+      }
+    } catch (error) {
+      console.log(error)
+    }
+    /*
     getUsers()
       .then(users => {
         const user = users[0]
-        if (username === user.username && password === user.password) {
-          setCurrentUser({ username, password })
+        if (mail === user.mail && password === user.password) {
+          setCurrentUser({ mail, password })
           navigation.navigate('Home')
         }
       })
       .catch(err => console.warn(err))
+      */
   }
 
   return (
@@ -36,17 +54,17 @@ export const LoginScreen = () => {
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
             style={styles.input}
-            placeholder='Nombre de usuario'
+            placeholder='correo electronico'
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
             autoCapitalize='none'
           />
         )}
-        name='username'
-        rules={{ required: 'El nombre de usuario es requerido' }}
+        name='mail'
+        rules={{ required: 'El email de usuario es requerido' }}
       />
-      {errors.username && <Text style={styles.errorText}>{errors.username.message}</Text>}
+      {errors.mail && <Text style={styles.errorText}>{errors.mail.message}</Text>}
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
