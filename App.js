@@ -12,11 +12,8 @@ export default function App() {
       <UserProvider>
         <NavigationContainer>
           <ObjectStack.Navigator screenOptions={{ headerShown: false }}>
-
             <ObjectStack.Screen name="Principal" component={MainStackScreen} />
-
             <ObjectStack.Screen name="Detail" component={ObjectDetailScreen} />
-
           </ObjectStack.Navigator>
         </NavigationContainer>
       </UserProvider>
