@@ -41,8 +41,8 @@ export const MainStackScreen = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
 
-      <Tab.Screen name="Home" options={{ title: "Inicio" }} component={ObjectScreen} />
-      {/* <Tab.Screen name="Object" options={{ title: "Mascotas" }} component={ObjectScreen} /> */}
+      <Tab.Screen name="Home" options={{ title: "Inicio" }} component={HomeScreen} />
+      <Tab.Screen name="Object" options={{ title: "Mascotas" }} component={ObjectScreen} />
       <Tab.Screen name="Profile" options={{ title: "Mi Perfil" }} component={ProfileScreen} />
       <Tab.Screen name="Scanner" options={{ title: "Scanner" }} component={ScannerScreen} />
 
