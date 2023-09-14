@@ -1,36 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, SafeAreaView, FlatList, Pressable, Image } from "react-native";
 import { styles } from "./ObjectScreen.styles.js"
-
-import { data } from "../../api/data.js"
-
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
 import { object } from "prop-types";
-
+import { getPets } from "../../api/pet.service.js";
 
 
 export const ObjectScreen = ({ navigation }) => {
 
   /* Search */
   const [searchQuery, setSearchQuery] = useState("")
+  const [ObjectScreen, setPets] = useState([])
+
   const handlerSearch = (query) => {
     setSearchQuery(query)
   }
 
-  const filteredObjects = data.filter(object => (
-    object.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredObjects = ObjectScreen.filter(object => (
+    object.nombre.toLowerCase().includes(searchQuery.toLowerCase())
   ))
+
+  /* */
+  useEffect(() => {
+    getPets()
+      .then(data => {
+        setPets(data)
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   /* Cards */
   const renderData = ({ item }) => (
     <Pressable onPress={() => navigation.navigate("Detail", { item })}>
       <View style={styles.itemContainer}>
-        <Text style={styles.itemTitle}>{item.title}</Text>
-        <Text style={styles.itemPrice}>{item.price}</Text>
-        <Text>Hola</Text>
+        <Image source={{ uri: `https://drive.google.com/uc?id=${item.images[0]}` }} style={styles.itemImage} />
+        <Text style={styles.itemTitle}>{item.nombre}</Text>
+        <Text style={styles.itemPrice}>{item.sexo}</Text>
+        <Text style={styles.itemPrice}>Edad: {item.edad}</Text>
       </View>
     </Pressable>
-    //<Image source={item.images[0]} style={itemContainer} />
   )
   return (
     <SafeAreaView style={styles.container}>
