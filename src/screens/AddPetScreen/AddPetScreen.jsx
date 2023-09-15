@@ -7,7 +7,6 @@ import { UserContext } from '../../Contexts/UserContext'
 import { useNavigation } from '@react-navigation/native'
 
 export const AddPetScreen = () => {
-
   const navigation = useNavigation()
   const { setCurrentUser } = useContext(UserContext)
   const { control, handleSubmit, formState: { errors } } = useForm({
@@ -17,18 +16,18 @@ export const AddPetScreen = () => {
       vacunas: '',
       nacimiento: '',
       age: '',
-      characteristics: ''
+      observaciones: ''
     }
   })
 
-  const handleAddPet = ({ name, age, characteristics }) => {
+  const handleAddPet = ({ name, sexo, vacunas, nacimiento, edad, observaciones }) => {
     const petCard = {
       name,
       sexo,
       vacunas,
       nacimiento,
-      age,
-      characteristics
+      edad,
+      observaciones
     }
     // Call the API service to add the pet card (Replace with your API service)
     addPetCard(petCard)
@@ -36,7 +35,7 @@ export const AddPetScreen = () => {
         // Handle success (e.g., show a success message)
         console.log('Mascota agregada correctamente!')
         // Navigate to the appropriate screen
-        navigation.navigate('Home')
+        navigation.navigate('Object')
       })
       .catch(err => {
         // Handle error (e.g., show an error message)
@@ -66,6 +65,24 @@ export const AddPetScreen = () => {
         rules={{ required: 'El nombre de la mascota es requerido' }}
       />
       {errors.name && <Text style={styles.errorText}>{errors.name.message}</Text>}
+
+      {/* Edad de Mascota*/}
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder='Edad de la mascota'
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            autoCapitalize='none'
+          />
+        )}
+        name='edad'
+        rules={{ required: 'Edad la mascota es requerido' }}
+      />
+      {errors.edad && <Text style={styles.errorText}>{errors.edad.message}</Text>}
 
       {/* Genero de Mascota*/}
       <Controller
@@ -109,7 +126,7 @@ export const AddPetScreen = () => {
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
             style={styles.input}
-            placeholder='01/01/2000'
+            placeholder='Fecha de Nacimiento'
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -121,7 +138,7 @@ export const AddPetScreen = () => {
       />
       {errors.nacimiento && <Text style={styles.errorText}>{errors.nacimiento.message}</Text>}
 
-      {/* Observaciones */}
+      {/* Observacions */}
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
@@ -134,10 +151,10 @@ export const AddPetScreen = () => {
             autoCapitalize='none'
           />
         )}
-        name='Observaciones'
-        rules={{ required: 'la fecha de nacimiento de la mascota es requerido' }}
+        name='observaciones'
+        rules={{ required: 'Ingrese descripción adicional' }}
       />
-      {errors.Observaciones && <Text style={styles.errorText}>{errors.Observaciones.message}</Text>}
+      {errors.observaciones && <Text style={styles.errorText}>{errors.observaciones.message}</Text>}
 
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit(handleAddPet)}>
