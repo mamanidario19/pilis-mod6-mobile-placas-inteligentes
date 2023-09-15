@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   },
   itemContainer: {
     flex: 1,
+    flexDirection: 'row',
     width: Dimensions.get('screen').width - 20,
     borderRadius: 20,
     overflow: 'hidden',
@@ -26,8 +27,9 @@ export const styles = StyleSheet.create({
   },
   itemImage: {
     height: 200,
-    width: '100%',
-    resizeMode: 'cover'
+    width: '50%',
+    resizeMode: 'cover',
+    borderRadius: 20
   },
   itemTitle: {
     fontWeight: 'bold',
@@ -36,7 +38,11 @@ export const styles = StyleSheet.create({
   },
   itemPrice: {
     marginTop: 5,
-    marginBottom: 10,
+    // marginBottom: 10,
     marginHorizontal: 10
+  },
+  column: {
+    alignItems: 'flex-start',
+    justifyContent: 'center'
   }
 })

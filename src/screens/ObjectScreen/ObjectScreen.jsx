@@ -34,9 +34,11 @@ export const ObjectScreen = ({ navigation }) => {
     <Pressable onPress={() => navigation.navigate("Detail", { item })}>
       <View style={styles.itemContainer}>
         <Image source={{ uri: `https://drive.google.com/uc?id=${item.images[0]}` }} style={styles.itemImage} />
-        <Text style={styles.itemTitle}>{item.nombre}</Text>
-        <Text style={styles.itemPrice}>{item.sexo}</Text>
-        <Text style={styles.itemPrice}>Edad: {item.edad}</Text>
+        <View style={styles.column}>
+          <Text style={styles.itemTitle}>{item.nombre}</Text>
+          <Text style={styles.itemPrice}>{item.sexo}</Text>
+          <Text style={styles.itemPrice}>Edad: {item.edad}</Text>
+        </View>
       </View>
     </Pressable>
   )
