@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, SafeAreaView, FlatList, Pressable, Image } from "react-native";
+import { Text, View, SafeAreaView, FlatList, Pressable, Image, TouchableOpacity } from "react-native";
 import { styles } from "./ObjectScreen.styles.js"
 import { SearchBar } from "../../components/SearchBar/SearchBar.jsx";
 import { object } from "prop-types";
 import { getPets } from "../../api/pet.service.js";
-
+import { AddPet } from "../../screens/AddPetScreen/AddPetScreen.jsx"
+import { useForm, Controller } from "react-hook-form";
 
 export const ObjectScreen = ({ navigation }) => {
 
@@ -40,12 +41,27 @@ export const ObjectScreen = ({ navigation }) => {
       </View>
     </Pressable>
   )
+
+  const handleAddPet = () => {
+    navigation.navigate(AddPet); // Navigate to the "AddPet" screen
+  };
+
   return (
     <SafeAreaView style={styles.container}>
 
       <Text style={styles.itemTitle}>Object Screen </Text>
 
       <SearchBar handlerSearch={handlerSearch} searchQuery={searchQuery} />
+
+      <View>
+        <TouchableOpacity onPress={() => navigation.navigate("AddPet")}>
+          <Text>Agregar mascota</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("AddPet")}>
+          <Text>Agregar objeto</Text>
+        </TouchableOpacity>
+      </View>
+
 
       <FlatList
         data={filteredObjects}
