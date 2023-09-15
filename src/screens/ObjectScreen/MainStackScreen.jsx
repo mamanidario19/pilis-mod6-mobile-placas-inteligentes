@@ -7,6 +7,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { HomeScreen } from '../HomeScreen/HomeScreen'
 import { ProfileScreen } from '../ProfileScreen/ProfileScreen'
 import { ScannerScreen } from '../ScannerScreen/ScannerScreen'
+import { AddPetScreen } from "../../components/AddPetScreen/AddPetScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,6 +46,7 @@ export const MainStackScreen = () => {
       <Tab.Screen name="Object" options={{ title: "Mascotas" }} component={ObjectScreen} />
       <Tab.Screen name="Profile" options={{ title: "Mi Perfil" }} component={ProfileScreen} />
       <Tab.Screen name="Scanner" options={{ title: "Scanner" }} component={ScannerScreen} />
+      <Tab.Screen name="AddPet" options={{ title: "Agregar Mascota" }} component={AddPetScreen} />
 
     </Tab.Navigator>
   )
