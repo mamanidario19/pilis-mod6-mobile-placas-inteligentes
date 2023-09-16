@@ -21,5 +21,9 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     color: '#333'
+  },
+  image: {
+    height: 50,
+    width: 50
   }
 })

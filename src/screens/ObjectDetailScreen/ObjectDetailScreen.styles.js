@@ -5,14 +5,16 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    marginTop: StatusBar.currentHeight
+    marginTop: StatusBar.currentHeight,
+    padding: 10
   },
   imageContainer: {
-    height: 300
+    height: 300   
   },
   image: {
-    width: Dimensions.get('screen').width,
-    height: 300
+    width: Dimensions.get('screen').width-20,
+    height: 300,
+    borderRadius: 30
   },
   textContainer: {
     padding: 20
@@ -60,5 +62,18 @@ export const styles = StyleSheet.create({
     paddingVertical: 8,
     width: 100,
     marginTop: 10
+  },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  title_qr: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center'
   }
 })
