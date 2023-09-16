@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native'
 import { styles } from './AddUserScreen.styles'
 import { useForm, Controller } from 'react-hook-form'
 import { authUser, getUsers } from '../../api/user.service'
@@ -82,9 +82,16 @@ export const AddUserScreen = () => {
         rules={{ required: 'La constraseña es requerida' }}
       />
       {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit(handleLogin)}>
-        <Text style={styles.buttonText}>Confirmar</Text>
-      </TouchableOpacity>
+
+      <View style={styles.imageContainer}>
+        <Image source={require('./../../../assets/images/button.png')} style={styles.image} />
+        <TouchableOpacity style={styles.button} onPress={handleSubmit(handleLogin)}>
+          <Text style={styles.buttonText}>Confirmar</Text>
+        </TouchableOpacity>
+
+      </View>
+
+
     </View>
   )
 }

@@ -92,6 +92,7 @@ export const ScannerScreen = () => {
       {/*scanned && (
         <Button style={styles.closeButton} title="Escanear de nuevo" onPress={() => setScanned(false)} />
       )*/}
+
     </View>
   );
 };

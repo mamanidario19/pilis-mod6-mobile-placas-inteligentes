@@ -28,15 +28,29 @@ export const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: COLORS.primary,
-    paddingVertical: 10,
+    paddingVertical: 30,
     paddingHorizontal: 20,
     borderRadius: 20,
-    marginTop: 8,
+    marginTop: -100,
     alignItems: 'center'
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold'
-  }
+  },
+  imageContainer: {
+    width: '100%',
+    height: 250,
+    position: 'relative',
+    top: 50,
+    bottom: 0,
+    right: 0,
+  },
+
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+
 })

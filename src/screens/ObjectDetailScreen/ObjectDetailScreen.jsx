@@ -21,6 +21,7 @@ export const ObjectDetailScreen = ({ route }) => {
             />
           ))}
         </ScrollView>*/}
+        <Image source={require('./../../../assets/images/example-pet.jpg')} style={styles.image}></Image>
       </View>
       <View style={styles.card}>
         <View style={styles.column}>
@@ -39,24 +40,24 @@ export const ObjectDetailScreen = ({ route }) => {
               vacunas: item.vacunas,
               id: item.id,
             })}
-            size={150} // Ajusta el tamaño según tus preferencias
+            size={125} // Ajusta el tamaño según tus preferencias
           />
         </View>
       </View>
-      <View>
+
+      <View style={styles.infoContainer}>
+
         <Text style={styles.title}>Descripción</Text>
         <Text style={styles.title}>{item.observaciones}</Text>
         <Text style={styles.description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           Ipsam nam veritatis sint iste eum molestiae velit itaque fugiat enim. Eius nihil ex corrupti
           doloremque totam perferendis et quaerat laboriosam itaque.</Text>
+        <View style={styles.separator}></View>
+        <Text style={styles.title}>Dueño: </Text>
+        <Text style={styles.title}>Telefono:</Text>
+
       </View>
 
-      <View>
-        <Text style={styles.title}>Descripción</Text>
-        <Text>{item.observaciones}</Text>
-        <Text style={styles.title}>Contacto:</Text>
-        <Text style={styles.title}>Dueño: </Text>
-      </View>
-    </ScrollView>
+    </ScrollView >
   );
 };

@@ -6,15 +6,20 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
     marginTop: StatusBar.currentHeight,
-    padding: 10
+    padding: 0,
   },
   imageContainer: {
-    height: 300   
+    width: '300',
+    height: 300,
+    position: 'relative',
+    top: 0,
+    bottom: 0,
+    right: 0,
   },
   image: {
-    width: Dimensions.get('screen').width-20,
-    height: 300,
-    borderRadius: 30
+    width: Dimensions.get('screen').width,
+    height: 450,
+    position: 'absolute',
   },
   textContainer: {
     padding: 20
@@ -46,7 +51,7 @@ export const styles = StyleSheet.create({
   description: {
     fontSize: 18,
     lineHeight: 26,
-    marginTop: 10
+    marginTop: -25
   },
   map: {
     height: 250,
@@ -62,18 +67,47 @@ export const styles = StyleSheet.create({
     paddingVertical: 8,
     width: 100,
     marginTop: 10
+  }, cardContainer: {
+    paddingHorizontal: 15, // Agrega paddingHorizontal al contenedor de la tarjeta
+    marginBottom: 10,
   },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 70,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    backgroundColor: COLORS.white, // Fondo blanco
+    borderRadius: 10, // Bordes redondeados
+    padding: 10, // Espaciado interno
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2, // Opacidad de la sombra
+    shadowRadius: 4, // Radio de la sombra
+    elevation: 3,
+    paddingHorizontal: 30,
   },
   title_qr: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center'
+  }, column: {
+    paddingHorizontal: 0,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  }, infoContainer: {
+    //flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 20,
+    backgroundColor: COLORS.white,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+  }, separator: {
+    height: 3, // Altura de la línea
+    backgroundColor: COLORS.primary, // Color de la línea
+    marginVertical: 10, // Espacio vertical alrededor de la línea
   }
 })
