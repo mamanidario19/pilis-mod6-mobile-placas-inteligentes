@@ -38,7 +38,7 @@ export const ObjectScreen = ({ navigation }) => {
   const renderData = ({ item }) => (
     <Pressable onPress={() => navigation.navigate("Detail", { item })} key={item.idMascota}>
       <View style={styles.itemContainer}>
-        <Image source={{ uri: `https://drive.google.com/uc?id=${item.images[0]}` }} style={styles.itemImage} />
+        {/*<Image source={{ uri: `https://drive.google.com/uc?id=${item.images[0]}` }} style={styles.itemImage} />*/}
         <Text style={styles.itemTitle}>{item.nombre}</Text>
         <Text style={styles.itemPrice}>{item.sexo}</Text>
         {/*<Text style={styles.itemPrice}>Edad: {item.edad}</Text>*/}
