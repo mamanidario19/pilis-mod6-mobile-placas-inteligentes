@@ -26,10 +26,10 @@ export const ObjectDetailScreen = ({ route }) => {
         <View style={styles.column}>
           <Text style={styles.title}>{item.nombre}</Text>
           <Text style={styles.title}>{item.sexo}</Text>
-          <Text style={styles.title}>{item.edad}</Text>
+          <Text style={styles.title}>{item.vacunas}</Text>
         </View>
         <View>
-          <Text style={styles.title_qr}>QR</Text>
+          {/*<Text style={styles.title_qr}>QR</Text>*/}
           {/* Utiliza react-native-qrcode-svg para mostrar el código QR */}
           {/* Cambiar por get ID*/}
           <QRCode
@@ -39,7 +39,7 @@ export const ObjectDetailScreen = ({ route }) => {
               vacunas: item.vacunas,
               id: item.id,
             })}
-            size={250} // Ajusta el tamaño según tus preferencias
+            size={150} // Ajusta el tamaño según tus preferencias
           />
         </View>
       </View>
@@ -51,11 +51,11 @@ export const ObjectDetailScreen = ({ route }) => {
           doloremque totam perferendis et quaerat laboriosam itaque.</Text>
       </View>
 
-      <View>        
+      <View>
         <Text style={styles.title}>Descripción</Text>
         <Text>{item.observaciones}</Text>
-        <Text style={styles.title}>Contacto: {item.contacto}</Text>
-        <Text style={styles.title}>Dueño: {item.propietario}</Text>
+        <Text style={styles.title}>Contacto:</Text>
+        <Text style={styles.title}>Dueño: </Text>
       </View>
     </ScrollView>
   );
