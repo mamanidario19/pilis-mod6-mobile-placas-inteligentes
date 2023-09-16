@@ -15,15 +15,11 @@ export default function App() {
       <UserProvider>
         <NavigationContainer>
           <ObjectStack.Navigator screenOptions={{ headerShown: false }}>
-
             <ObjectStack.Screen name="Principal" component={MainStackScreen} />
-
             <ObjectStack.Screen name="Detail" component={ObjectDetailScreen} />
             <ObjectStack.Screen name="AddPet" component={AddPetScreen} />
             <ObjectStack.Screen name="AddObject" component={AddObjectScreen} />
             <ObjectStack.Screen name="AddUser" component={AddUserScreen} />
-
-
           </ObjectStack.Navigator>
         </NavigationContainer>
       </UserProvider>
