@@ -38,5 +38,12 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  image: {
+    width: 250,
+    height: 250,
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
   }
 })

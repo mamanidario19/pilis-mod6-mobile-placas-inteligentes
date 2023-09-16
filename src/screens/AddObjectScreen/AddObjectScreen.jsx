@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native'
 import { styles } from './AddObjectScreen.styles'
 import { useForm, Controller } from 'react-hook-form'
 import { authUser, getUsers } from '../../api/user.service'
@@ -80,6 +80,7 @@ export const AddObjectScreen = () => {
       <TouchableOpacity style={styles.button} onPress={handleSubmit(handleAddObject)}>
         <Text style={styles.buttonText}>Agregar</Text>
       </TouchableOpacity>
+      <Image source={require('./../../../assets/images/corner.png')} style={styles.image}></Image>
     </View>
   )
 }

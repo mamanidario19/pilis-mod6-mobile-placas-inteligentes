@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native'
 import { styles } from "../Login/LoginScreen.styles"
 import { useForm, Controller } from 'react-hook-form'
 import { authUser, getUsers } from '../../api/user.service'
@@ -95,7 +95,7 @@ export const LoginScreen = () => {
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("AddUser")}>
         <Text style={styles.buttonText}>Registrarse</Text>
       </TouchableOpacity>
-
+      <Image source={require('./../../../assets/images/corner.png')} style={styles.image}></Image>
     </View>
   )
 }
