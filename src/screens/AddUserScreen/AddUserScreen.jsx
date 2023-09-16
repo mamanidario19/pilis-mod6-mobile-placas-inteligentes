@@ -1,14 +1,12 @@
 import React, { useContext } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import { styles } from "../Login/LoginScreen.styles"
+import { styles } from './AddUserScreen.styles'
 import { useForm, Controller } from 'react-hook-form'
 import { authUser, getUsers } from '../../api/user.service'
 import { UserContext } from '../../Contexts/UserContext'
 import { useNavigation } from '@react-navigation/native'
-import { AddUser } from '../AddUserScreen/AddUserScreen'
 
-
-export const LoginScreen = () => {
+export const AddUserScreen = () => {
   const navigation = useNavigation()
   const { setCurrentUser } = useContext(UserContext)
   const { control, handleSubmit, formState: { errors } } = useForm({
@@ -31,11 +29,11 @@ export const LoginScreen = () => {
           );
         }
         console.log("sesion iniciada");
+        {/*Volver al inicio */ }
       }
     } catch (error) {
       console.log(error)
     }
-
     /*
     getUsers()
       .then(users => {
@@ -48,14 +46,10 @@ export const LoginScreen = () => {
       .catch(err => console.warn(err))
       */
   }
-  /*----------------- */
-  const handleAddUser = () => {
-    navigation.navigate(AddUser); // Navigate to the "AddPet" screen
-  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Inicio de Sesión</Text>
+      <Text style={styles.title}>Registro de Usuario</Text>
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
@@ -89,13 +83,8 @@ export const LoginScreen = () => {
       />
       {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
       <TouchableOpacity style={styles.button} onPress={handleSubmit(handleLogin)}>
-        <Text style={styles.buttonText}>Entrar</Text>
+        <Text style={styles.buttonText}>Confirmar</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("AddUser")}>
-        <Text style={styles.buttonText}>Registrarse</Text>
-      </TouchableOpacity>
-
     </View>
   )
 }
