@@ -1,5 +1,5 @@
 import { api } from './api'
-const SERVICE_ENDPOINT = `${api.server + api.apiVersion}/pets`
+const SERVICE_ENDPOINT = `${api.server}/mascotas`
 
 export const getPets = async () => {
   try {
