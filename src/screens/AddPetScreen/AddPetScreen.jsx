@@ -3,20 +3,23 @@ import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native'
 import { styles } from './AddPetScren.styles'
 import { useForm, Controller } from 'react-hook-form'
 import { authUser, getUsers } from '../../api/user.service'
-import { UserContext } from '../../Contexts/UserContext'
+import { UserContext, useAuth2 } from '../../Contexts/UserContext'
 import { useNavigation } from '@react-navigation/native'
 
 export const AddPetScreen = () => {
   const navigation = useNavigation()
   const { setCurrentUser } = useContext(UserContext)
+  const auth = useAuth2()
+
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       name: '',
       sexo: '',
       vacunas: '',
       nacimiento: '',
-      age: '',
-      observaciones: ''
+      observaciones: '',
+      idResponsable: '',
+      idRaza: ''
     }
   })
 
@@ -27,7 +30,9 @@ export const AddPetScreen = () => {
       vacunas,
       nacimiento,
       edad,
-      observaciones
+      observaciones,
+      idResponsable: auth.idPerfil,
+      idRaza: 1
     }
     // Call the API service to add the pet card (Replace with your API service)
     addPetCard(petCard)
@@ -120,7 +125,7 @@ export const AddPetScreen = () => {
       />
       {errors.vacunas && <Text style={styles.errorText}>{errors.vacunas.message}</Text>}
 
-      {/* Nacimiento*/}
+      {/* Nacimiento
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
@@ -136,7 +141,7 @@ export const AddPetScreen = () => {
         name='nacimiento'
         rules={{ required: 'la fecha de nacimiento de la mascota es requerido' }}
       />
-      {errors.nacimiento && <Text style={styles.errorText}>{errors.nacimiento.message}</Text>}
+      {errors.nacimiento && <Text style={styles.errorText}>{errors.nacimiento.message}</Text>}*/}
 
       {/* Observacions */}
       <Controller

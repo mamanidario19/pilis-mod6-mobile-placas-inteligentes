@@ -37,7 +37,7 @@ export const ObjectScreen = ({ navigation }) => {
   /* Cards */
   const renderData = ({ item }) => (
     <Pressable onPress={() => navigation.navigate("Detail", { item })} key={item.idMascota}>
-      <View style={styles.itemContainer}>
+      <View style={styles.itemContainer} >
         <Image
           style={styles.itemImage}
           source={require('../../../assets/images/example-pet.jpg')}
@@ -46,6 +46,7 @@ export const ObjectScreen = ({ navigation }) => {
           <Text style={styles.itemPrice}>Nombre: {item.nombre}</Text>
           <Text style={styles.itemPrice}>Sexo: {item.sexo}</Text>
           <Text style={styles.itemPrice}>Vacunas: {item.vacunas}</Text>
+          <Text style={styles.itemPrice}>Vacunas: {item.idMascota}</Text>
           {/* Agrega más datos aquí si es necesario */}
         </View>
       </View>
@@ -79,7 +80,7 @@ export const ObjectScreen = ({ navigation }) => {
         <FlatList
           data={filteredObjects}
           renderItem={renderData}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.idMascota}
           style={styles.itemList}
         />
       )}

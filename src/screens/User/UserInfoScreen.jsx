@@ -1,15 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { styles } from './UserInfoScreen.styles'
-import { UserContext } from '../../Contexts/UserContext'
+import { UserContext, useAuth2 } from '../../Contexts/UserContext'
+import { authUser } from '../../api/user.service'
+import { Form } from 'react-hook-form'
+import { FormProfile } from '../../components/Profile/FormProfile'
+
 
 export const UserInfoScreen = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext)
+  const auth = useAuth2()
+  const [isUpdate, setIsUpdate] = useState(false)
 
   const handleLogout = () => {
-    setCurrentUser(null)
+    auth.setIdUsuario(null)
   }
-
+  const handleModPerfil = () => {
+    setIsUpdate(true)
+  }
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -18,27 +25,27 @@ export const UserInfoScreen = () => {
           source={require('../../../assets/images/owner.png')}
         />
         <View style={styles.profileInfo}>
-          <Text style={styles.profileName}>{currentUser.username}</Text>
-          <Text style={styles.profileLocation}>Jujuy, Argentina</Text>
+          <Text style={styles.profileName}>Nickname</Text>
+          <Text style={styles.profileLocation}>{auth.mail}</Text>
+          <Text style={styles.profileLocation}>Argentina</Text>
+
         </View>
-        <TouchableOpacity style={styles.button} onPress={handleLogout}>
-          <Text style={styles.buttonText}>Salir</Text>
+        <TouchableOpacity style={styles.button} onPress={handleModPerfil}>
+          <Text style={styles.buttonText}>Actualizar Datos</Text>
         </TouchableOpacity>
       </View>
+
+
       <View style={styles.content}>
         <Text style={styles.sectionTitle}>About Me</Text>
-        <Text style={styles.sectionText}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
-          tellus eu nisi tincidunt ultrices. Morbi id dictum ipsum. Nunc nec
-          lacus massa. Integer eget elit non elit sodales maximus.
-        </Text>
+        {isUpdate && (<FormProfile />)}
+
         <Text style={styles.sectionTitle}>Interests</Text>
-        <Text style={styles.sectionText}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
-          tellus eu nisi tincidunt ultrices. Morbi id dictum ipsum. Nunc nec
-          lacus massa. Integer eget elit non elit sodales maximus.
-        </Text>
       </View>
+
+      <TouchableOpacity style={styles.button} onPress={handleLogout}>
+        <Text style={styles.buttonText}>Salir</Text>
+      </TouchableOpacity>
 
     </ScrollView>
   )
