@@ -2,9 +2,10 @@ import React, { useContext } from 'react'
 import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native'
 import { styles } from './AddUserScreen.styles'
 import { useForm, Controller } from 'react-hook-form'
-import { authUser, getUsers } from '../../api/user.service'
+import { authUser, createUser, getUsers } from '../../api/user.service'
 import { UserContext } from '../../Contexts/UserContext'
 import { useNavigation } from '@react-navigation/native'
+
 
 export const AddUserScreen = () => {
   const navigation = useNavigation()
@@ -15,36 +16,15 @@ export const AddUserScreen = () => {
       password: ''
     }
   })
-
   const handleLogin = async (data) => {
-    //console.log(data);
-    try {
-      const response = await authUser(data)
-      if (response.ok) {
-        const json = await response.json()
-        if (json.token && json.refreshToken) {
-          setCurrentUser(
-            { mail: json.mail },
-            { id: json.idUsuario }
-          );
-        }
-        console.log("sesion iniciada");
-        {/*Volver al inicio */ }
-      }
-    } catch (error) {
-      console.log(error)
+
+    console.log(data);
+    const response = await createUser(data)
+    if (response.ok) {
+      console.log(await response.json());
+      navigation.navigate("Profile");
     }
-    /*
-    getUsers()
-      .then(users => {
-        const user = users[0]
-        if (mail === user.mail && password === user.password) {
-          setCurrentUser({ mail, password })
-          navigation.navigate('Home')
-        }
-      })
-      .catch(err => console.warn(err))
-      */
+    else { console.log(await response.json()) }
   }
 
   return (
@@ -87,6 +67,7 @@ export const AddUserScreen = () => {
         <Image source={require('./../../../assets/images/button.png')} style={styles.image} />
         <TouchableOpacity style={styles.button} onPress={handleSubmit(handleLogin)}>
           <Text style={styles.buttonText}>Confirmar</Text>
+
         </TouchableOpacity>
 
       </View>

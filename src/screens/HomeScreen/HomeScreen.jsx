@@ -5,8 +5,8 @@ import { styles } from "./HomeScreen.styles";
 export const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Consigue nuevos amigos!</Text>
-      <Text style={styles.text}>NO compres, Adopta!</Text>
+      <Text style={styles.title}>SurePaws</Text>
+      <Text style={styles.text}>Patitas seguras</Text>
       <Image source={require('./../../../assets/images/home.png')} style={styles.image} />
       <TouchableOpacity
         style={styles.button}

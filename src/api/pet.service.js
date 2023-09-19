@@ -8,4 +8,27 @@ export const getPets = async () => {
   } catch {
     throw new Error('could not fetch users')
   }
-} 
+}
+
+export const createMascota = async ({ nombre, sexo, vacunas, observaciones, idResponsable, idRaza }) => {
+  try {
+    const response = await fetch(`${api.server}/mascotas`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nombre,
+        sexo,
+        vacunas,
+        observaciones,
+        idResponsable,
+        idRaza
+      }),
+    })
+
+    return response
+  } catch {
+    throw new Error('could not fetch')
+  }
+}

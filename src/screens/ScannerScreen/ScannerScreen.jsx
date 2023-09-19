@@ -73,12 +73,9 @@ export const ScannerScreen = () => {
                   <Text style={styles.dataValue}>{parsedData.vacunas || "N/A"}</Text>
                 </View>
                 <View style={styles.dataContainer}>
-                  <Text style={styles.dataLabel}>Dueño:</Text>
-                  {/*<Text style={styles.dataValue}>{parsedData.vacunas || "N/A"}</Text>*/}
-                </View>
-                <View style={styles.dataContainer}>
-                  <Text style={styles.dataLabel}>Contacto:</Text>
-                  {/* <Text style={styles.dataValue}>{parsedData.vacunas || "N/A"}</Text>*/}
+                  <Text style={styles.dataLabel}>Contacto a Responsable:</Text>
+                  <Text style={styles.dataLabel}>dario@gmail.com:</Text>
+                  {/*<Text style={styles.dataValue}>{parsedData.contacto || "N/A"}</Text>*/}
                 </View>
                 <TouchableOpacity onPress={closeModal} style={styles.closeButton}>
                   <Text style={styles.buttonText}>Volver</Text>

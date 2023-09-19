@@ -3,7 +3,7 @@ import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native'
 import { styles } from "../Login/LoginScreen.styles"
 import { useForm, Controller } from 'react-hook-form'
 import { authUser, getUsers } from '../../api/user.service'
-import { UserContext } from '../../Contexts/UserContext'
+import { UserContext, useAuth2 } from '../../Contexts/UserContext'
 import { useNavigation } from '@react-navigation/native'
 import { AddUser } from '../AddUserScreen/AddUserScreen'
 
@@ -17,7 +17,7 @@ export const LoginScreen = () => {
       password: ''
     }
   })
-
+  const auth = useAuth2();
   const handleLogin = async (data) => {
     //console.log(data);
     try {
@@ -25,10 +25,11 @@ export const LoginScreen = () => {
       if (response.ok) {
         const json = await response.json()
         if (json.token && json.refreshToken) {
-          setCurrentUser(
+          auth.saveUser(json)
+          /*setCurrentUser(
             { mail: json.mail },
             { id: json.idUsuario }
-          );
+          );*/
         }
         console.log("sesion iniciada");
       }

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, Text, ScrollView, Image } from "react-native";
 import { styles } from "./ObjectDetailScreen.styles";
-import { UserContext } from "../../Contexts/UserContext";
+import { UserContext, useAuth2 } from "../../Contexts/UserContext";
 import QRCode from "react-native-qrcode-svg"; // Importa la biblioteca
 
 export const ObjectDetailScreen = ({ route }) => {
   const { item } = route.params;
   //const { user } = useContext(UserContext);
-
+  const auth = useAuth2();
   return (
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
@@ -27,7 +27,7 @@ export const ObjectDetailScreen = ({ route }) => {
         <View style={styles.column}>
           <Text style={styles.title}>{item.nombre}</Text>
           <Text style={styles.title}>{item.sexo}</Text>
-          <Text style={styles.title}>{item.vacunas}</Text>
+          <Text style={styles.title}>Vacunas:{item.vacunas}</Text>
         </View>
         <View>
           {/*<Text style={styles.title_qr}>QR</Text>*/}
@@ -38,6 +38,7 @@ export const ObjectDetailScreen = ({ route }) => {
               name: item.nombre,
               gender: item.sexo,
               vacunas: item.vacunas,
+              contacto: item.mail,
               id: item.id,
             })}
             size={125} // Ajusta el tamaño según tus preferencias
@@ -49,12 +50,12 @@ export const ObjectDetailScreen = ({ route }) => {
 
         <Text style={styles.title}>Descripción</Text>
         <Text style={styles.title}>{item.observaciones}</Text>
-        <Text style={styles.description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Ipsam nam veritatis sint iste eum molestiae velit itaque fugiat enim. Eius nihil ex corrupti
-          doloremque totam perferendis et quaerat laboriosam itaque.</Text>
+        <Text style={styles.description}>Hola! soy un pequeño perro amante de los huesos. Por favor si me ves solo contactate con
+          mi humano!</Text>
         <View style={styles.separator}></View>
-        <Text style={styles.title}>Dueño: </Text>
-        <Text style={styles.title}>Telefono:</Text>
+        <Text style={styles.title}>Gmail Responsable:</Text>
+        <Text style={styles.title}>{auth.mail} </Text>
+
 
       </View>
 
