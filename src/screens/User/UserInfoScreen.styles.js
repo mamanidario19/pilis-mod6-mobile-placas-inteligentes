@@ -55,6 +55,16 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     height: 50
   },
+  buttonModProfile: {
+    justifyContent: 'center',
+    backgroundColor: COLORS.primary,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    marginTop: 15,
+    marginLeft: 10,
+    height: 50
+  },
   buttonText: {
     color: COLORS.white,
     fontSize: 18,

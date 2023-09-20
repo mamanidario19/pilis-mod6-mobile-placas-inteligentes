@@ -30,17 +30,14 @@ export const UserInfoScreen = () => {
           <Text style={styles.profileLocation}>Argentina</Text>
 
         </View>
-        <TouchableOpacity style={styles.button} onPress={handleModPerfil}>
+        <TouchableOpacity style={styles.buttonModProfile} onPress={handleModPerfil}>
           <Text style={styles.buttonText}>Actualizar Datos</Text>
         </TouchableOpacity>
       </View>
 
 
       <View style={styles.content}>
-        <Text style={styles.sectionTitle}>About Me</Text>
         {isUpdate && (<FormProfile />)}
-
-        <Text style={styles.sectionTitle}>Interests</Text>
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleLogout}>
