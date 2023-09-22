@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { View, Text, ScrollView, Image } from "react-native";
-import { styles } from "./ObjectDetailScreen.styles";
-import { UserContext, useAuth2 } from "../../Contexts/UserContext";
-import QRCode from "react-native-qrcode-svg"; // Importa la biblioteca
+import React, { useContext, useEffect, useState } from 'react'
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { styles } from './ObjectDetailScreen.styles'
+import { UserContext, useAuth2 } from '../../Contexts/UserContext'
+import QRCode from 'react-native-qrcode-svg' // Importa la biblioteca
+import { FontAwesome5 } from '@expo/vector-icons'
+import { COLORS } from '../../utils/theme'
 
 export const ObjectDetailScreen = ({ route }) => {
-  const { item } = route.params;
+  const { item } = route.params
   //const { user } = useContext(UserContext);
-  const auth = useAuth2();
+  const auth = useAuth2()
   return (
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
@@ -21,14 +23,12 @@ export const ObjectDetailScreen = ({ route }) => {
             />
           ))}
         </ScrollView>*/}
-        <Image source={require('./../../../assets/images/example-pet.jpg')} style={styles.image}></Image>
+        <Image
+          source={require('./../../../assets/images/example-pet.jpg')}
+          style={styles.image}
+        ></Image>
       </View>
       <View style={styles.card}>
-        <View style={styles.column}>
-          <Text style={styles.title}>{item.nombre}</Text>
-          <Text style={styles.title}>{item.sexo}</Text>
-          <Text style={styles.title}>Vacunas:{item.vacunas}</Text>
-        </View>
         <View>
           {/*<Text style={styles.title_qr}>QR</Text>*/}
           {/* Utiliza react-native-qrcode-svg para mostrar el código QR */}
@@ -44,21 +44,32 @@ export const ObjectDetailScreen = ({ route }) => {
             size={125} // Ajusta el tamaño según tus preferencias
           />
         </View>
+        <View style={styles.column}>
+          <Text style={styles.titleName}>Nombre: {item.nombre}</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.btnShare}>
+              <FontAwesome5 name="share-alt" size={30} color={COLORS.primary} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btnShare}>
+              <FontAwesome5 name="download" size={30} color={COLORS.primary} />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
 
       <View style={styles.infoContainer}>
-
-        <Text style={styles.title}>Descripción</Text>
-        <Text style={styles.title}>{item.observaciones}</Text>
-        <Text style={styles.description}>Hola! soy un pequeño perro amante de los huesos. Por favor si me ves solo contactate con
-          mi humano!</Text>
+        <Text style={styles.title}>Sexo: {item.sexo}</Text>
+        <Text style={styles.title}>Vacunas:{item.vacunas}</Text>
+        <Text style={styles.title}>Descripción: {item.observaciones}</Text>
+        {/* <Text style={styles.title}></Text> */}
+        {/* <Text style={styles.description}>Hola! soy un pequeño perro amante de los huesos. Por favor si me ves solo contactate con
+          mi humano!</Text> */}
         <View style={styles.separator}></View>
-        <Text style={styles.title}>Gmail Responsable:</Text>
+        <Text style={styles.title}>Datos del Responsable:</Text>
         <Text style={styles.title}>{auth.mail} </Text>
-
-
+        <Text style={styles.title}>{auth.perfil.telefono} </Text>
+        <Text style={styles.title}>{auth.perfil.direccion} </Text>
       </View>
-
-    </ScrollView >
-  );
-};
+    </ScrollView>
+  )
+}

@@ -22,41 +22,47 @@ export const styles = StyleSheet.create({
     position: 'absolute',
   },
   textContainer: {
-    padding: 20
+    padding: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10
+    marginBottom: 10,
+  },
+  titleName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textTransform: 'uppercase',
   },
   location: {
     fontSize: 18,
     color: '#666',
-    marginBottom: 5
+    marginBottom: 5,
   },
   price: {
     fontSize: 20,
     color: '#444',
-    marginBottom: 5
+    marginBottom: 5,
   },
   ratingContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   rating: {
     marginLeft: 8,
     color: COLORS.text,
-    fontSize: FONT_SIZE.md
+    fontSize: FONT_SIZE.md,
   },
   description: {
     fontSize: 18,
     lineHeight: 26,
-    marginTop: -25
+    marginTop: -25,
   },
   map: {
     height: 250,
     marginVertical: 20,
-    borderRadius: 10
+    borderRadius: 10,
   },
   webButton: {
     textAlign: 'center',
@@ -66,8 +72,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     width: 100,
-    marginTop: 10
-  }, cardContainer: {
+    marginTop: 10,
+  },
+  cardContainer: {
     paddingHorizontal: 15, // Agrega paddingHorizontal al contenedor de la tarjeta
     marginBottom: 10,
   },
@@ -93,21 +100,38 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    textAlign: 'center'
-  }, column: {
+    textAlign: 'center',
+  },
+  column: {
     paddingHorizontal: 0,
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
-  }, infoContainer: {
+    paddingLeft:10
+  },
+  infoContainer: {
     //flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 20,
     backgroundColor: COLORS.white,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-  }, separator: {
+  },
+  separator: {
     height: 3, // Altura de la línea
     backgroundColor: COLORS.primary, // Color de la línea
     marginVertical: 10, // Espacio vertical alrededor de la línea
+  },
+  btnShare: {
+    borderColor:COLORS.primary,
+    borderWidth:1,
+    borderRadius:50,
+    padding:7,
+    width:50,
+    margin:5
+  },
+  buttonContainer:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   }
 })
