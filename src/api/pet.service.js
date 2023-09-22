@@ -10,6 +10,15 @@ export const getPets = async () => {
   }
 }
 
+export const getPetsByIdProfile = async(id) => {
+  try {
+      const response = await fetch(`${api.server}/mascotasByIdPerfil/${id}`)        
+      return response.json();
+    } catch {
+      throw new Error('could not fetch');
+    }
+}
+
 export const createPet = async ({
   nombre,
   edad,

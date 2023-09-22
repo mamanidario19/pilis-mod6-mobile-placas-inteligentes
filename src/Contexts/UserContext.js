@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
   const [idPerfil, setIdPerfil] = useState(null)
   const [idUsuario, setIdUsuario] = useState(null)
   const [isAuthtenticated, setIsAuthtenticated] = useState(null)
-  const [mail, setMail] = useState(null)
+  const [mail, setMail] = useState(null)  
 
   async function saveUser(userData) {
     //setAccessToken(userData.token)
