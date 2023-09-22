@@ -18,6 +18,7 @@ import { AddObject } from '../../screens/AddObjectScreen/AddObjectScreen.jsx'
 import { useForm, Controller } from 'react-hook-form'
 import { PetContext } from '../../Contexts/PetContext.js'
 import { useAuth2 } from '../../Contexts/UserContext.js'
+import { getObjectsByIdProfile } from '../../api/object.js'
 
 export const ObjectScreen = ({ navigation }) => {
   /* Search */
@@ -45,6 +46,17 @@ export const ObjectScreen = ({ navigation }) => {
           // console.log(data)
         })
         .catch((err) => console.log(err))
+      // getObjectsByIdProfile(auth.idPerfil)
+      //   .then((data) => {
+      //     setPets((pets) => ({
+      //       ...pets,
+      //       ...data,
+      //     }))
+
+      //   })
+      //   .catch((err) => {
+      //     console.log(err)
+      //   })
     }
   }, [])
 

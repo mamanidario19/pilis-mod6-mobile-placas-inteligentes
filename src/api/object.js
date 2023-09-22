@@ -1,5 +1,14 @@
 import { api } from "./api"
 
+export const getObjectsByIdProfile = async(id) => {
+  try {
+      const response = await fetch(`${api.server}/objetosByIdPerfil/${id}`)
+      return response.json();
+    } catch {
+      throw new Error('could not fetch');
+    }
+}
+
 export const createObject = async ({
     nombre,
     foto,

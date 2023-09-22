@@ -5,6 +5,7 @@ export const UserContext = createContext({
   idPerfil: '',
   idUsuario: '',
   isAuthtenticated: '',
+  perfil: null,
   currentUser: {},
   mail: '',
   setIdUsuario: () => {},
@@ -19,7 +20,8 @@ export const UserProvider = ({ children }) => {
   const [idPerfil, setIdPerfil] = useState(null)
   const [idUsuario, setIdUsuario] = useState(null)
   const [isAuthtenticated, setIsAuthtenticated] = useState(null)
-  const [mail, setMail] = useState(null)  
+  const [mail, setMail] = useState(null)
+  const [perfil, setPerfil] = useState(null)
 
   async function saveUser(userData) {
     //setAccessToken(userData.token)
@@ -30,7 +32,10 @@ export const UserProvider = ({ children }) => {
     setMail(userData.mail)
     await getPerfilByIdUsuario(userData.idUsuario)
       .then((data) => data.json())
-      .then(json => setIdPerfil(json.idPerfil))
+      .then((json) => {
+        setIdPerfil(json.idPerfil)
+        setPerfil(json)
+      })
       .catch((err) => console.log(err))
   }
   function logOut() {
@@ -49,7 +54,8 @@ export const UserProvider = ({ children }) => {
         currentUser,
         mail,
         setIdUsuario,
-        logOut
+        logOut,
+        perfil
       }}
     >
       {children}

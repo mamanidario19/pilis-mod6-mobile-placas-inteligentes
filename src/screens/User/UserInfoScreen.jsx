@@ -7,11 +7,36 @@ import { FormProfile } from '../../components/Profile/FormProfile'
 export const UserInfoScreen = () => {
   const auth = useAuth2()
   const [isUpdate, setIsUpdate] = useState(false)
+  const [perfilUpdate, setPerfilUpdate] = useState(null)
+  const defaultValues = {
+    apellido: '',
+    nombre: '',
+    telefono: '',
+    facebook: '',
+    instagram: '',
+    direccion: '',
+    idLocalidad: '',
+    idUsuario: '',
+  }
 
   const handleLogout = () => {
     auth.logOut()
   }
   const handleModPerfil = () => {
+    if (auth.idPerfil) {
+      setPerfilUpdate({
+        apellido: auth.perfil.apellido,
+        nombre: auth.perfil.nombre,
+        telefono: auth.perfil.telefono,
+        facebook: auth.perfil.facebook,
+        instagram: auth.perfil.instagram,
+        direccion: auth.perfil.direccion,
+        idLocalidad: '',
+        idUsuario: '',
+      })
+    } else {
+      setPerfilUpdate(defaultValues)
+    }
     setIsUpdate(true)
   }
   return (
@@ -31,14 +56,18 @@ export const UserInfoScreen = () => {
             style={styles.buttonModProfile}
             onPress={handleModPerfil}
           >
-            <Text style={styles.buttonText}>{auth.idPerfil? 'Crear Perfil':'Actualizar'}</Text>
+            <Text style={styles.buttonText}>
+              {auth.idPerfil ? 'Actualizar' : 'Crear Perfil'}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonLogOut} onPress={handleLogout}>
             <Text style={styles.buttonTextLogOut}>Salir</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.content}>{isUpdate && <FormProfile />}</View>
+      <View style={styles.content}>
+        {isUpdate && <FormProfile perfil={perfilUpdate} />}
+      </View>
     </ScrollView>
   )
 }

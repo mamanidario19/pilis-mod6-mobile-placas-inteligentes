@@ -1,28 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TextInput, View, Image, Text, TouchableOpacity } from 'react-native'
 import { useForm, Controller } from 'react-hook-form'
 import { styles } from './FormProfile.styles'
 import { useAuth2 } from '../../Contexts/UserContext'
-import { createProfile } from '../../api/perfil.service'
+import { createProfile, updateProfile } from '../../api/perfil.service'
 import { useNavigation } from '@react-navigation/native'
 
-export const FormProfile = () => {
+export const FormProfile = ({ perfil }) => {
   const {
     control,
+    setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      apellido: '',
-      nombre: '',
-      telefono: '',
-      facebook: '',
-      instagram: '',
-      direccion: '',
-      idLocalidad: '',
-      idUsuario: '',
-    },
-  })
+  } = useForm(perfil)
   const auth = useAuth2()
   const navigation = useNavigation()
 
@@ -32,19 +22,43 @@ export const FormProfile = () => {
       idLocalidad: 1,
       idUsuario: auth.idUsuario,
     }
+    console.log(modProfile)
     // Call the API service to add
-    await createProfile(modProfile)
-      .then(() => {
-        // Handle success
-        console.log('Perfil agregado correctamente!')
-        // Navigate to the appropriate screen
-        navigation.navigate('Object')
-      })
-      .catch((err) => {
-        // Handle error
-        console.warn('Error al actualizar perfil!:', err)
-      })
+    if (auth.idPerfil) {
+      //Actualizar perfil
+      await updateProfile(modProfile, auth.idPerfil)
+        .then(() => {
+          // Handle success
+          console.log('Perfil actualizado correctamente!')
+          // Navigate to the appropriate screen
+          navigation.navigate('Object')
+        })
+        .catch((err) => {
+          // Handle error
+          console.warn('Error al actualizar perfil!:', err)
+        })
+    } else {
+      await createProfile(modProfile)
+        .then(() => {
+          // Handle success
+          console.log('Perfil agregado correctamente!')
+          // Navigate to the appropriate screen
+          navigation.navigate('Object')
+        })
+        .catch((err) => {
+          // Handle error
+          console.warn('Error al actualizar perfil!:', err)
+        })
+    }
   }
+  useEffect(()=>{
+    setValue('nombre',perfil.nombre)
+    setValue('apellido',perfil.apellido)
+    setValue('direccion',perfil.direccion)
+    setValue('telefono',perfil.telefono)
+    setValue('facebook',perfil.facebook)
+    setValue('instagram',perfil.instagram)
+  },[])
   return (
     <View>
       {/* Apellido*/}
@@ -58,6 +72,7 @@ export const FormProfile = () => {
             onChangeText={onChange}
             value={value}
             autoCapitalize="none"
+            // defaultValue={perfil.apellido}
           />
         )}
         name="apellido"
@@ -78,6 +93,7 @@ export const FormProfile = () => {
             onChangeText={onChange}
             value={value}
             autoCapitalize="none"
+            // defaultValue={perfil.nombre}
           />
         )}
         name="nombre"
@@ -98,6 +114,7 @@ export const FormProfile = () => {
             onChangeText={onChange}
             value={value}
             autoCapitalize="none"
+            // defaultValue={perfil.telefono}
           />
         )}
         name="telefono"
@@ -118,6 +135,7 @@ export const FormProfile = () => {
             onChangeText={onChange}
             value={value}
             autoCapitalize="none"
+            // defaultValue={perfil.facebook}
           />
         )}
         name="facebook"
@@ -138,6 +156,7 @@ export const FormProfile = () => {
             onChangeText={onChange}
             value={value}
             autoCapitalize="none"
+            // defaultValue={perfil.instagram}
           />
         )}
         name="instagram"
@@ -178,6 +197,7 @@ export const FormProfile = () => {
             onChangeText={onChange}
             value={value}
             autoCapitalize="none"
+            // defaultValue={perfil.direccion}
           />
         )}
         name="direccion"
