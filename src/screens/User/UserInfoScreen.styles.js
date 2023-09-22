@@ -15,10 +15,11 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   profileImage: {
+    marginTop:35,
     width: 80,
     height: 80,
     borderRadius: 40,
-    marginRight: 5
+    marginRight: 5,
   },
   profileInfo: {
     justifyContent: 'center'
@@ -47,27 +48,48 @@ export const styles = StyleSheet.create({
   },
   button: {
     justifyContent: 'center',
+    alignItems:'center',
     backgroundColor: COLORS.primary,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
     borderRadius: 20,
     marginTop: 15,
     marginLeft: 10,
-    height: 50
+    height: 50,
+  },
+  buttonLogOut: {
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor: '#fff',
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    marginTop: 15,
+    marginLeft: 10,
+    height: 50,
+    borderColor:COLORS.primary,
+    borderWidth:1
   },
   buttonModProfile: {
     justifyContent: 'center',
+    alignItems:'center',
     backgroundColor: COLORS.primary,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
     borderRadius: 20,
     marginTop: 15,
     marginLeft: 10,
-    height: 50
+    height: 50,
+    textAlign:'center'
   },
   buttonText: {
     color: COLORS.white,
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  buttonTextLogOut: {
+    color: COLORS.primary,
+    fontSize: 16,
     fontWeight: 'bold'
   }
 })

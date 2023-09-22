@@ -14,6 +14,7 @@ export const ObjectScreen = ({ navigation }) => {
   /* Search */
   const [searchQuery, setSearchQuery] = useState("")
   const [ObjectScreen, setPets] = useState([])
+  
 
 
   const handlerSearch = (query) => {

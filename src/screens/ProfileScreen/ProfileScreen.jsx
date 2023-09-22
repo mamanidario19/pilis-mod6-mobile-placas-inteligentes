@@ -8,7 +8,7 @@ export const ProfileScreen = () => {
   const auth = useAuth2()
   return (
     <>
-      {auth.idUsuario
+      {auth.isAuthtenticated
         ? (
           <UserInfoScreen />
         )

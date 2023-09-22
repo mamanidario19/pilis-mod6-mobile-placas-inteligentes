@@ -1,18 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { styles } from './UserInfoScreen.styles'
-import { UserContext, useAuth2 } from '../../Contexts/UserContext'
-import { authUser } from '../../api/user.service'
-import { Form } from 'react-hook-form'
+import { useAuth2 } from '../../Contexts/UserContext'
 import { FormProfile } from '../../components/Profile/FormProfile'
-
 
 export const UserInfoScreen = () => {
   const auth = useAuth2()
   const [isUpdate, setIsUpdate] = useState(false)
 
   const handleLogout = () => {
-    auth.setIdUsuario(null)
+    auth.logOut()
   }
   const handleModPerfil = () => {
     setIsUpdate(true)
@@ -28,22 +25,20 @@ export const UserInfoScreen = () => {
           <Text style={styles.profileName}>Nickname</Text>
           <Text style={styles.profileLocation}>{auth.mail}</Text>
           <Text style={styles.profileLocation}>Argentina</Text>
-
         </View>
-        <TouchableOpacity style={styles.buttonModProfile} onPress={handleModPerfil}>
-          <Text style={styles.buttonText}>Actualizar Datos</Text>
-        </TouchableOpacity>
+        <View style={styles.profileInfo}>
+          <TouchableOpacity
+            style={styles.buttonModProfile}
+            onPress={handleModPerfil}
+          >
+            <Text style={styles.buttonText}>{auth.idPerfil? 'Crear Perfil':'Actualizar'}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonLogOut} onPress={handleLogout}>
+            <Text style={styles.buttonTextLogOut}>Salir</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
-
-      <View style={styles.content}>
-        {isUpdate && (<FormProfile />)}
-      </View>
-
-      <TouchableOpacity style={styles.button} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Salir</Text>
-      </TouchableOpacity>
-
+      <View style={styles.content}>{isUpdate && <FormProfile />}</View>
     </ScrollView>
   )
 }

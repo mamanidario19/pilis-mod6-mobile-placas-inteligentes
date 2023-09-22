@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: '#fff',
-    marginTop: StatusBar.currentHeight
+    marginTop: StatusBar.currentHeight,
   },
   title: {
     fontSize: 24,
@@ -29,11 +29,13 @@ export const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: COLORS.primary,
-    paddingVertical: 30,
-    paddingHorizontal: 20,
+    // paddingVertical: 30,
+    // paddingHorizontal: 20,
     borderRadius: 20,
-    marginTop: -100,
-    alignItems: 'center'
+    // marginTop: -200,
+    alignItems: 'center',
+    justifyContent:'center',
+    height:50
   },
   buttonText: {
     color: '#fff',

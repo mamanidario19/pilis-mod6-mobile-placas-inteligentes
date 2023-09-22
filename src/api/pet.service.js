@@ -10,7 +10,15 @@ export const getPets = async () => {
   }
 }
 
-export const createMascota = async ({ nombre, sexo, vacunas, observaciones, idResponsable, idRaza }) => {
+export const createPet = async ({
+  nombre,
+  edad,
+  sexo,
+  vacunas,
+  observaciones,
+  idResponsable,
+  idRaza,
+}) => {
   try {
     const response = await fetch(`${api.server}/mascotas`, {
       method: 'POST',
@@ -19,11 +27,12 @@ export const createMascota = async ({ nombre, sexo, vacunas, observaciones, idRe
       },
       body: JSON.stringify({
         nombre,
+        edad: parseInt(edad),
         sexo,
         vacunas,
         observaciones,
         idResponsable,
-        idRaza
+        idRaza,
       }),
     })
 
