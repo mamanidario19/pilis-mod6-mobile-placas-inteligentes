@@ -6,12 +6,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: '#fff',
-    marginTop: StatusBar.currentHeight
+    marginTop: StatusBar.currentHeight,
+    paddingLeft: 40,
+    paddingRight: 40
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 16,
+    marginBottom: 20,
     textAlign: 'center'
   },
   input: {
@@ -20,7 +22,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     paddingHorizontal: 10,
-    marginBottom: 5
+    marginBottom: 20
   },
   errorText: {
     color: 'red',
@@ -32,12 +34,14 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 20,
     marginTop: 8,
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '50%'
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textTransform: 'uppercase'
   },
   image: {
     width: 250,
@@ -45,5 +49,9 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 0,
+  },
+  containerButton: {
+    justifyContent: 'center',
+    flexDirection: 'row'
   }
 })

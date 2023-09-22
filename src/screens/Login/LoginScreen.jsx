@@ -89,13 +89,16 @@ export const LoginScreen = () => {
         rules={{ required: 'La constraseña es requerida' }}
       />
       {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit(handleLogin)}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("AddUser")}>
-        <Text style={styles.buttonText}>Registrarse</Text>
-      </TouchableOpacity>
+      <View style={styles.containerButton}>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit(handleLogin)}>
+          <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("AddUser")}>
+          <Text style={styles.buttonText}>Registrarse</Text>
+        </TouchableOpacity>
+      </View>
       <Image source={require('./../../../assets/images/corner.png')} style={styles.image}></Image>
     </View>
   )
