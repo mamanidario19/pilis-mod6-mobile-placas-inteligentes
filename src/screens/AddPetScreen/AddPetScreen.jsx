@@ -161,10 +161,11 @@ export const AddPetScreen = () => {
       />
       {errors.observaciones && <Text style={styles.errorText}>{errors.observaciones.message}</Text>}
 
-
-      <TouchableOpacity style={styles.button} onPress={handleSubmit(handleAddPet)}>
-        <Text style={styles.buttonText}>Agregar</Text>
-      </TouchableOpacity>
+      <View style={styles.containerButton}>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit(handleAddPet)}>
+          <Text style={styles.buttonText}>Agregar</Text>
+        </TouchableOpacity>
+      </View>
       <Image source={require('./../../../assets/images/corner.png')} style={styles.image}></Image>
     </View>
   )

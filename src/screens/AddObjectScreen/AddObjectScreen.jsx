@@ -77,9 +77,11 @@ export const AddObjectScreen = () => {
       />
       {errors.caracteristicas && <Text style={styles.errorText}>{errors.caracteristicas.message}</Text>}
 
-      <TouchableOpacity style={styles.button} onPress={handleSubmit(handleAddObject)}>
-        <Text style={styles.buttonText}>Agregar</Text>
-      </TouchableOpacity>
+      <View style={styles.containerButton}>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit(handleAddObject)}>
+          <Text style={styles.buttonText}>Agregar</Text>
+        </TouchableOpacity>
+      </View>
       <Image source={require('./../../../assets/images/corner.png')} style={styles.image}></Image>
     </View>
   )
