@@ -1,28 +1,63 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Platform,
+  PermissionsAndroid,
+} from 'react-native'
 import { styles } from './ObjectDetailScreen.styles'
-import { UserContext, useAuth2 } from '../../Contexts/UserContext'
+import { useAuth2 } from '../../Contexts/UserContext'
 import QRCode from 'react-native-qrcode-svg' // Importa la biblioteca
 import { FontAwesome5 } from '@expo/vector-icons'
 import { COLORS } from '../../utils/theme'
 
+//Librerias utilizadas para compartir la imagen del QR
+import * as FileSystem from 'expo-file-system'
+import { shareAsync } from 'expo-sharing'
+
 export const ObjectDetailScreen = ({ route }) => {
   const { item } = route.params
-  //const { user } = useContext(UserContext);
   const auth = useAuth2()
+  const [petQRref, setPetQRref] = useState()
+
+  const downloadFromUrl = async () => {
+    if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
+      return
+    }
+    if (petQRref) {
+      const path = FileSystem.cacheDirectory + 'qr.jpeg'
+      petQRref.toDataURL(async (data) => {
+        const result = await FileSystem.writeAsStringAsync(path, data, {
+          encoding: FileSystem.EncodingType.Base64,
+        })
+          .then(() => FileSystem.getInfoAsync(path))
+          .catch((err) => console.log(err))
+        save(result.uri)
+      })
+    }
+  }
+  const save = (uri) => {
+    shareAsync(uri)
+  }
+
+  const hasAndroidPermission = async () => {
+    const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+
+    const hasPermission = await PermissionsAndroid.check(permission)
+    if (hasPermission) {
+      return true
+    }
+
+    const status = await PermissionsAndroid.request(permission)
+    return status === 'granted'
+  }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
-        {/*<ScrollView horizontal pagingEnabled style={styles.imageContainer}>
-          {item.images.map((image, idx) => (
-            <Image
-              key={idx}
-              source={{ uri: `https://drive.google.com/uc?id=${image}` }}
-              style={styles.image}
-              resizeMode="cover"
-            />
-          ))}
-        </ScrollView>*/}
         <Image
           source={require('./../../../assets/images/example-pet.jpg')}
           style={styles.image}
@@ -30,9 +65,6 @@ export const ObjectDetailScreen = ({ route }) => {
       </View>
       <View style={styles.card}>
         <View>
-          {/*<Text style={styles.title_qr}>QR</Text>*/}
-          {/* Utiliza react-native-qrcode-svg para mostrar el código QR */}
-          {/* Cambiar por get ID*/}
           <QRCode
             value={JSON.stringify({
               name: item.nombre,
@@ -41,13 +73,13 @@ export const ObjectDetailScreen = ({ route }) => {
               contacto: item.mail,
               id: item.id,
             })}
-            size={125} // Ajusta el tamaño según tus preferencias
+            getRef={(c) => setPetQRref(c)}
           />
         </View>
         <View style={styles.column}>
           <Text style={styles.titleName}>Nombre: {item.nombre}</Text>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.btnShare}>
+            <TouchableOpacity style={styles.btnShare} onPress={downloadFromUrl}>
               <FontAwesome5 name="share-alt" size={30} color={COLORS.primary} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnShare}>
@@ -56,14 +88,10 @@ export const ObjectDetailScreen = ({ route }) => {
           </View>
         </View>
       </View>
-
       <View style={styles.infoContainer}>
         <Text style={styles.title}>Sexo: {item.sexo}</Text>
         <Text style={styles.title}>Vacunas:{item.vacunas}</Text>
         <Text style={styles.title}>Descripción: {item.observaciones}</Text>
-        {/* <Text style={styles.title}></Text> */}
-        {/* <Text style={styles.description}>Hola! soy un pequeño perro amante de los huesos. Por favor si me ves solo contactate con
-          mi humano!</Text> */}
         <View style={styles.separator}></View>
         <Text style={styles.title}>Datos del Responsable:</Text>
         <Text style={styles.title}>{auth.mail} </Text>
